@@ -26,7 +26,6 @@ export default function RootLayout({
               <ul className="flex space-x-4">
                 <li><a href="/" className="hover:text-gray-300">Home</a></li>
                 <li><a href="/posts" className="hover:text-gray-300">Posts</a></li>
-                <li><a href="/about" className="hover:text-gray-300">About</a></li>
               </ul>
             </div>
           </nav>
