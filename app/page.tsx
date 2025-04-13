@@ -32,7 +32,7 @@ export default async function Home() {
         
         {posts.length === 0 ? (
           <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4">
-            <p>No posts found. Make sure you've run the migration script to create test data.</p>
+            <p>No posts found. Make sure you&apos;ve run the migration script to create test data.</p>
           </div>
         ) : (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

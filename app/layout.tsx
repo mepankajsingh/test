@@ -1,22 +1,29 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import './globals.css';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Next.js SSR with Supabase',
-  description: 'Welcome to the Supabase integration demo!',
-}
+  title: 'Supabase Demo',
+  description: 'A Next.js application with Supabase integration',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap"
+        />
       </head>
       <body>
         <div className="min-h-screen bg-gray-50">
@@ -33,5 +40,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  )
+  );
 }

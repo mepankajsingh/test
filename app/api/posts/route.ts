@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     
     const supabase = createServerClient();
     
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('posts')
       .insert([{ title, content }])
       .select();

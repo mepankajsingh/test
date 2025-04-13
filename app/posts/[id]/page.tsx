@@ -1,13 +1,9 @@
 import { createServerClient } from '@/lib/supabase';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export default async function PostDetail({ params }: { params: { id: string } }) {
+export default async function PostPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  
-  if (!id) {
-    notFound();
-  }
-  
   const supabase = createServerClient();
   
   const { data: post, error } = await supabase
@@ -17,35 +13,35 @@ export default async function PostDetail({ params }: { params: { id: string } })
     .single();
   
   if (error || !post) {
-    notFound();
+    console.error('Error fetching post:', error);
+    return notFound();
   }
-  
+
   return (
     <div className="container mx-auto p-4 max-w-3xl">
-      <div className="bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-4 text-gray-900">{post.title}</h1>
-        
-        <div className="text-gray-500 mb-6">
-          Published on {new Date(post.created_at).toLocaleDateString('en-US', {
+      <Link 
+        href="/posts" 
+        className="text-blue-500 hover:text-blue-700 mb-4 inline-block"
+      >
+        ← Back to all posts
+      </Link>
+      
+      <article className="bg-white p-6 rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
+        <p className="text-gray-500 text-sm mb-6">
+          {new Date(post.created_at).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
           })}
-        </div>
+        </p>
         
-        <div className="prose lg:prose-xl">
-          <p className="text-gray-700">{post.content}</p>
+        <div className="prose max-w-none">
+          <p>{post.content}</p>
         </div>
-        
-        <div className="mt-8">
-          <a 
-            href="/posts" 
-            className="text-blue-500 hover:text-blue-700 flex items-center"
-          >
-            ← Back to all posts
-          </a>
-        </div>
-      </div>
+      </article>
     </div>
   );
 }
